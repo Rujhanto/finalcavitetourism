@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Cavite Tourism</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+    <a href="index.html" class="logo-link">
+        <img src="image/cavite.png" alt="Cavite Seal" class="logo-img">
+    </a>
+    <div class="header-center">
+        <p class="header-tagline">Isang Cavite. Isang Lahi. Isang Pamilya.</p>
+        <h1 class="header-title">WELCOME TO CAVITE!</h1>
+    </div>
+    <nav>
+        <a href="index.html"        class="nav-link">Home</a>
+        <a href="about.html"        class="nav-link">About</a>
+        <a href="destinations.html" class="nav-link">Destinations</a>
+        <div class="nav-dropdown">
+            <button class="nav-link nav-dropdown-btn" id="exploreDropdownBtn" aria-haspopup="true" aria-expanded="false">Explore &#9662;</button>
+            <div class="dropdown-content" id="exploreDropdown" role="menu">
+                <a href="about.html" role="menuitem">About Cavite</a>
+                <a href="destinations.html" role="menuitem">Tourist Destinations</a>
+                <a href="festivals.html" role="menuitem">Festivals &amp; Culture</a>
+                <a href="food.html" role="menuitem">Food &amp; Delicacies</a>
+                <a href="gallery.html" role="menuitem">Gallery</a>
+                <a href="travel-tips.html" role="menuitem">Travel Tips</a>
+                <hr>
+                <a href="contact.html" role="menuitem">Contact / Inquire</a>
+            </div>
+        </div>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <h1>Photo Gallery</h1>
+    <p>A visual journey through Cavite's landscapes, heritage, cuisine, and people. Click any photo to view full size.</p>
+</div>
+
+<main>
+    <div class="section-heading">
+        <h2>Explore Cavite Through Images</h2>
+        <p>30 photos showcasing the beauty and diversity of Cavite Province.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lbClose">&times;</button>
+    <button class="lightbox-prev" id="lbPrev">&#8249;</button>
+    <div class="lightbox-img-wrap">
+        <img src="" alt="" id="lbImg">
+    </div>
+    <button class="lightbox-next" id="lbNext">&#8250;</button>
+    <p class="lightbox-caption" id="lbCaption"></p>
+    <p class="lightbox-counter" id="lbCounter"></p>
+</div>
+
+<footer>
+    &copy; 2026 Cavite Tourism &mdash; carpiomark68@gmail.com &mdash; Designed with care.
+</footer>
+
+<script>
+const photos = [
+    { src: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_863/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/cpess7humuyyeclvqx7n/PanoramicTagaytayRidgeTour.jpg", caption: "Taal Volcano from Tagaytay Ridge" },
+    { src: "https://3.bp.blogspot.com/-ThjZfHSkCc4/VW3GDoRWCVI/AAAAAAAAOPo/Uh5VQjdVokg/s1600/1.jpg", caption: "Aguinaldo Shrine, Kawit" },
+    { src: "https://hiketomountains.com/wp-content/uploads/2022/07/Mt-Pico-de-Loro-Day-Hike-10.jpg", caption: "Mt. Pico de Loro Summit, Maragondon" },
+    { src: "https://cdn-0.unexploredfootsteps.com/wp-content/uploads/2020/04/Corregidor-Island-Tour-Siargao-Beach.jpeg", caption: "Corregidor Island, Manila Bay" },
+    { src: "https://calabarzontheregionyoucancallhome.files.wordpress.com/2018/10/balite-falls-amadeo-cavite.jpg", caption: "Balite Falls, Amadeo" },
+    { src: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_9GpX7Dl1jXvB2i-_M3FZaq069Amu2d02cDfzQHMP9jH5Q7Db4CoNDXJurVr9Qw-f-Aihc22B0mIbiOepvNnnFqoH5jaWytHoMGW1Ql2xDXbclUOAKsSJfD3qs-P16lXv-3WaIxFT12H55yaFu__h5PoZPC5IOjuPUuroyOexL33JftAza07Y_KVRbK4y/s1200/Sky-Ranch-Tagaytay-aerial-view.jpg", caption: "Sky Ranch Tagaytay, aerial view" },
+    { src: "https://pinaywise.com/wp-content/uploads/2024/03/Amadeos-Coffee-Festival-2048x2048.jpg", caption: "Pahimis Coffee Festival, Amadeo" },
+    { src: "https://primer.com.ph/travel/wp-content/uploads/sites/6/2019/10/GourmetFarms_Featured.png", caption: "Gourmet Farms, Silang" },
+    { src: "https://ik.imagekit.io/tvlk/blog/2023/07/shutterstock_1848999469-3.jpg?tr=dpr-2,w-675", caption: "Coastal view, Ternate" },
+    { src: "https://www.filipinoart.ph/newsroom/wp-content/uploads/2020/04/Museo-Orlina-1-1024x711.jpg", caption: "Museo Orlina, Alfonso" },
+    { src: "https://journalnews.com.ph/wp-content/uploads/2023/06/Regada-Water-Festival-1024x683.jpg", caption: "Regada Water Festival, Kawit" },
+    { src: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiso7oIIbKZhN34Zm4KGHkw3qCs7ZR1W-5dO1Hhs4ibA1JjtgGu8M4UVjiDzeIenLvKxRapJ-AisCbG5sK6lH4NxxImkoS6Q0EHi-GTyUdZxj9e4Ti1hY4FO288eJ-n7lUmMa6lhguNa4gV0A3aJOVGv0SVKRBUCOw--W4TspX53OZxoF_n5lWSDURf/s831/Mahogany%20Beef%20Market.JPG", caption: "Mahogany Market, Tagaytay" },
+    { src: "https://thesmartlocal.ph/wp-content/uploads/2022/05/Hidden-Charm-Cafe-in-Silang-Cavite-garden-like-setup-scaled.jpeg", caption: "Garden cafe, Silang" },
+    { src: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_863,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/mfjxylt2bdtwjctcskcb/NurtureWellnessVillageSpaExperienceinTagaytay.jpg", caption: "Nurture Wellness Village, Tagaytay" },
+    { src: "https://i.pinimg.com/736x/68/39/b1/6839b199d91ae168fdfb91b2d79b598d--cathedral-church-cathedrals.jpg", caption: "Heritage church, Cavite" },
+    { src: "https://alchetron.com/cdn/bonifacio-trial-house-f4b13738-a4f2-4f8d-a7f9-8581767e433-resize-750.jpeg", caption: "Bonifacio Trial House, Maragondon" },
+    { src: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/457077612.jpg?k=87f015c13138154b030159e6a4b25f697149bcb0ccad4250897e5eb94ae3fd28&o=", caption: "Highland resort, Alfonso" },
+    { src: "https://photo.golfasian.com/golf-courses/sherwoods-hills/Sherwood%20Hills%20Golf%20Club%20Layout.jpg", caption: "Sherwood Hills Golf Club" },
+    { src: "https://riverpark.ph/wp-content/uploads/2025/06/pancitpuso.jpg", caption: "Pancit Pusit, Cavite City specialty" },
+    { src: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_862/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/wiflbwnybaiu5fvrbasr/DaintreeRainforestCanopyZiplineTourinCapeTribulation.jpg", caption: "Eco-adventure zipline experience" },
+    { src: "https://tools.paintmaps.com/og_image/map_cropping/3-85676127-1.jpeg", caption: "Cavite Province map" },
+    { src: "https://c.files.bbci.co.uk/157A4/production/_110527978_gettyimages-167394030.jpg", caption: "Taal Volcano Island" },
+    { src: "https://lifestyle.inquirer.net/files/2018/03/t0322col-chikiamco_1.jpg", caption: "Fried tawilis, Taal Lake specialty" },
+    { src: "https://www.coffeebeans.ph/storage/2023/02/Kape-Barako.jpg", caption: "Kapeng Barako, Cavite's coffee heritage" },
+    { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Bibingka.jpg/250px-Bibingka.jpg", caption: "Bibingka espesyal, local delicacy" },
+    { src: "https://www.profriends.com/news/2024/2024-12-11_Festive-Cavite/images/Photo10.jpg", caption: "Festival celebration, Cavite" },
+    { src: "https://files01.pna.gov.ph/category-list/2018/06/25/st.%20john_5b309d0f66f9f8_95321455.png", caption: "Salubungan Festival, General Trias" },
+    { src: "https://images.gmanews.tv/webpics/2023/12/bibingka_2023_12_17_14_01_13.jpg", caption: "Puto bumbong, Christmas delicacy" },
+    { src: "https://www.kawalingpinoy.com/wp-content/uploads/2016/03/sampalok-candy-1-500x500.jpg", caption: "Sampalok candy, Cavite pasalubong" },
+    { src: "https://i.ytimg.com/vi/LXtKOa-K2P4/maxresdefault.jpg", caption: "Local cuisine, Caviteño cooking" }
+];
+
+// Build gallery grid
+const grid = document.getElementById('galleryGrid');
+photos.forEach((photo, i) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.innerHTML = `
+        <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
+        <div class="gallery-caption">${photo.caption}</div>
+    `;
+    item.addEventListener('click', () => openLightbox(i));
+    grid.appendChild(item);
+});
+
+// Lightbox logic
+let currentIdx = 0;
+const lb        = document.getElementById('lightbox');
+const lbImg     = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbCounter = document.getElementById('lbCounter');
+
+function openLightbox(idx) {
+    currentIdx = idx;
+    updateLightbox();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function updateLightbox() {
+    const p = photos[currentIdx];
+    lbImg.src          = p.src;
+    lbImg.alt          = p.caption;
+    lbCaption.textContent = p.caption;
+    lbCounter.textContent = `${currentIdx + 1} / ${photos.length}`;
+}
+
+function prev() { currentIdx = currentIdx === 0 ? photos.length - 1 : currentIdx - 1; updateLightbox(); }
+function next() { currentIdx = currentIdx === photos.length - 1 ? 0 : currentIdx + 1; updateLightbox(); }
+
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', prev);
+document.getElementById('lbNext').addEventListener('click', next);
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  prev();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'Escape')     closeLightbox();
+});
+</script>
+
+<script>
+    const dropBtn  = document.getElementById('exploreDropdownBtn');
+    const dropMenu = document.getElementById('exploreDropdown');
+    dropBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropMenu.classList.toggle('open');
+        dropBtn.classList.toggle('active', isOpen);
+        dropBtn.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function () {
+        dropMenu.classList.remove('open');
+        dropBtn.classList.remove('active');
+        dropBtn.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            dropMenu.classList.remove('open');
+            dropBtn.classList.remove('active');
+            dropBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Destinations | Cavite Tourism</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+    <a href="index.html" class="logo-link">
+        <img src="image/cavite.png" alt="Cavite Seal" class="logo-img">
+    </a>
+    <div class="header-center">
+        <p class="header-tagline">Isang Cavite. Isang Lahi. Isang Pamilya.</p>
+        <h1 class="header-title">WELCOME TO CAVITE!</h1>
+    </div>
+    <nav>
+        <a href="index.html"        class="nav-link">Home</a>
+        <a href="about.html"        class="nav-link">About</a>
+        <a href="destinations.html" class="nav-link active">Destinations</a>
+        <div class="nav-dropdown">
+            <button class="nav-link nav-dropdown-btn" id="exploreDropdownBtn" aria-haspopup="true" aria-expanded="false">Explore &#9662;</button>
+            <div class="dropdown-content" id="exploreDropdown" role="menu">
+                <a href="about.html" role="menuitem">About Cavite</a>
+                <a href="destinations.html" role="menuitem">Tourist Destinations</a>
+                <a href="festivals.html" role="menuitem">Festivals &amp; Culture</a>
+                <a href="food.html" role="menuitem">Food &amp; Delicacies</a>
+                <a href="gallery.html" role="menuitem">Gallery</a>
+                <a href="travel-tips.html" role="menuitem">Travel Tips</a>
+                <hr>
+                <a href="contact.html" role="menuitem">Contact / Inquire</a>
+            </div>
+        </div>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <h1>Tourist Destinations</h1>
+    <p>Discover the best spots Cavite has to offer — from beaches and mountains to heritage sites and islands.</p>
+</div>
+
+<!-- CONTROLS -->
+<main>
+    <div class="dest-controls">
+        <input type="text" id="searchInput" class="dest-search" placeholder="🔍 Search by name, city, or category...">
+        <div class="filter-btns" id="filterBtns">
+            <button class="filter-btn active" data-cat="All">All</button>
+            <button class="filter-btn" data-cat="Beach">Beach</button>
+            <button class="filter-btn" data-cat="Mountain">Mountain</button>
+            <button class="filter-btn" data-cat="Waterfall">Waterfall</button>
+            <button class="filter-btn" data-cat="Historical Site">Historical Site</button>
+            <button class="filter-btn" data-cat="Island">Island</button>
+            <button class="filter-btn" data-cat="Adventure">Adventure</button>
+            <button class="filter-btn" data-cat="Food Destination">Food Destination</button>
+        </div>
+    </div>
+
+    <div class="dest-grid" id="destGrid"></div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="destModal">
+    <div class="modal-box">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <img src="" alt="" class="modal-img" id="modalImg">
+        <div class="modal-body">
+            <h2 id="modalName"></h2>
+            <div class="modal-meta">
+                <span class="modal-tag" id="modalCat"></span>
+                <span class="modal-city" id="modalCity"></span>
+            </div>
+            <p id="modalDesc"></p>
+            <div class="modal-info-grid">
+                <div class="modal-info-item">
+                    <label>Entrance Fee</label>
+                    <span id="modalFee"></span>
+                </div>
+                <div class="modal-info-item">
+                    <label>Opening Hours</label>
+                    <span id="modalHours"></span>
+                </div>
+                <div class="modal-info-item">
+                    <label>Best Time to Visit</label>
+                    <span id="modalBest"></span>
+                </div>
+                <div class="modal-info-item">
+                    <label>Location</label>
+                    <span id="modalLocation"></span>
+                </div>
+            </div>
+            <p class="modal-section-title">Activities</p>
+            <ul class="modal-list" id="modalActivities"></ul>
+            <p class="modal-section-title" style="margin-top:14px;">Travel Tips</p>
+            <ul class="modal-list" id="modalTips"></ul>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Cavite Tourism &mdash; carpiomark68@gmail.com &mdash; Designed with care.
+</footer>
+
+<script>
+const destinations = [
+    {
+        name: "Aguinaldo Shrine",
+        city: "Kawit",
+        category: "Historical Site",
+        image: "https://3.bp.blogspot.com/-ThjZfHSkCc4/VW3GDoRWCVI/AAAAAAAAOPo/Uh5VQjdVokg/s1600/1.jpg",
+        short: "The historic home of General Emilio Aguinaldo where the Philippine Declaration of Independence was proclaimed on June 12, 1898.",
+        description: "The Aguinaldo Shrine in Kawit is the ancestral home of General Emilio Aguinaldo, the first president of the Philippine Republic. This is the very site where the Philippine Declaration of Independence was proclaimed on June 12, 1898. The mansion houses a museum with revolutionary artifacts, period furniture, and interactive exhibits tracing the life of Aguinaldo and the birth of the nation.",
+        fee: "₱50 (Adults) / ₱25 (Students)",
+        hours: "8:00 AM – 5:00 PM (Tue–Sun)",
+        bestTime: "Year-round; June 12 for Independence Day festivities",
+        location: "Kawit, Cavite",
+        activities: ["Museum tour", "Historical exhibit viewing", "Independence Day commemorations", "Photography"],
+        tips: ["Arrive early to avoid crowds", "Guided tours available upon request", "Closed on Mondays"]
+    },
+    {
+        name: "Taal Volcano Viewpoint",
+        city: "Tagaytay",
+        category: "Mountain",
+        image: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_863/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/cpess7humuyyeclvqx7n/PanoramicTagaytayRidgeTour.jpg",
+        short: "Enjoy the world-famous panoramic view of Taal Volcano — a volcano on an island inside a lake on another island.",
+        description: "Tagaytay Ridge offers one of the most iconic views in Asia — the Taal Volcano sitting on Volcano Island inside Taal Lake, which itself sits on Luzon Island. The cool highland air, numerous restaurants, and the breathtaking panorama make Tagaytay the most visited destination in Cavite. On clear days you can see the volcanic island's crater lake from the ridge.",
+        fee: "Free (ridge viewpoints); boat tours ₱500–₱800",
+        hours: "Open 24 hours (ridge); boat tours 6:00 AM – 4:00 PM",
+        bestTime: "November to March for clear skies",
+        location: "Tagaytay City, Cavite",
+        activities: ["Volcano viewing", "Horse-back riding", "Boat tour to Volcano Island", "Dining with a view", "Photography"],
+        tips: ["Bring a jacket — it gets cold, especially at night", "Early morning offers the clearest views", "Check volcanic activity advisories before trekking to the island"]
+    },
+    {
+        name: "Corregidor Island",
+        city: "Manila Bay (Cavite waters)",
+        category: "Island",
+        image: "https://cdn-0.unexploredfootsteps.com/wp-content/uploads/2020/04/Corregidor-Island-Tour-Siargao-Beach.jpeg",
+        short: "A historic island fortress in Manila Bay that served as the last bastion of Filipino-American resistance during WWII.",
+        description: "Corregidor Island is a tadpole-shaped island at the entrance of Manila Bay that served as a key military fortress during World War II. Known as 'The Rock,' it was the site of the heroic but ultimately unsuccessful defense by Filipino and American forces against the Japanese invasion in 1942. Today, it is a war memorial and tourist destination featuring ruins, tunnels, bunkers, and museums that honor the sacrifice of those who fought.",
+        fee: "Day tour packages from ₱1,800 (includes ferry)",
+        hours: "Sun tours depart 8:00 AM from CCP Complex, Manila",
+        bestTime: "November to May (avoid typhoon season)",
+        location: "Manila Bay, Cavite side",
+        activities: ["War memorial tour", "Malinta Tunnel visit", "Light and sound show", "Battery ruins exploration", "Beach relaxation"],
+        tips: ["Book Sun Cruises tours in advance", "Wear comfortable walking shoes — the island is hilly", "Overnight packages are available for a fuller experience"]
+    },
+    {
+        name: "Mt. Pico de Loro",
+        city: "Maragondon",
+        category: "Mountain",
+        image: "https://hiketomountains.com/wp-content/uploads/2022/07/Mt-Pico-de-Loro-Day-Hike-10.jpg",
+        short: "A challenging trek to a towering rock pinnacle with panoramic 360-degree views of Cavite's mountains and coastline.",
+        description: "Mt. Pico de Loro (Parrot's Beak) is one of the most popular hiking destinations in Cavite. The mountain features a distinctive rock formation at its peak that resembles a parrot's beak. The hike involves rappelling and rope work near the summit, making it an adventure worth undertaking. From the top, hikers are rewarded with sweeping views of both Cavite and Batangas, including the Verde Island Passage.",
+        fee: "₱100 (registration) + guide fee ₱500–₱800",
+        hours: "Day hike registration: 5:00 AM – 10:00 AM",
+        bestTime: "October to May (dry season)",
+        location: "Maragondon, Cavite",
+        activities: ["Mountain hiking", "Rock climbing / rappelling", "Camping", "Photography", "Birdwatching"],
+        tips: ["Hire a registered local guide", "Start early — summit by noon", "Bring extra water and energy food", "Register at the barangay hall before ascending"]
+    },
+    {
+        name: "Balite Falls",
+        city: "Amadeo",
+        category: "Waterfall",
+        image: "https://calabarzontheregionyoucancallhome.files.wordpress.com/2018/10/balite-falls-amadeo-cavite.jpg",
+        short: "A refreshing multi-tiered waterfall hidden in the coffee country hills of Amadeo, perfect for a cool dip.",
+        description: "Balite Falls is a beautiful multi-tiered waterfall located in the coffee-growing town of Amadeo. Surrounded by lush greenery and cool air characteristic of Cavite's highlands, the falls cascade into a natural pool perfect for swimming. The trek to the falls passes through scenic coffee plantations, adding a unique agricultural tourism experience to the visit.",
+        fee: "₱30 (entrance)",
+        hours: "8:00 AM – 5:00 PM daily",
+        bestTime: "Year-round; best flow after rainy season (Oct–Dec)",
+        location: "Amadeo, Cavite",
+        activities: ["Swimming", "Nature trekking", "Coffee farm visiting", "Photography", "Picnicking"],
+        tips: ["Wear water-resistant shoes for the slippery trail", "Bring a change of clothes", "Combine with a visit to a nearby coffee farm"]
+    },
+    {
+        name: "Sky Ranch Tagaytay",
+        city: "Tagaytay",
+        category: "Adventure",
+        image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_9GpX7Dl1jXvB2i-_M3FZaq069Amu2d02cDfzQHMP9jH5Q7Db4CoNDXJurVr9Qw-f-Aihc22B0mIbiOepvNnnFqoH5jaWytHoMGW1Ql2xDXbclUOAKsSJfD3qs-P16lXv-3WaIxFT12H55yaFu__h5PoZPC5IOjuPUuroyOexL33JftAza07Y_KVRbK4y/s1200/Sky-Ranch-Tagaytay-aerial-view.jpg",
+        short: "A popular theme park on Tagaytay Ridge featuring rides, food stalls, and a giant Ferris wheel overlooking Taal Lake.",
+        description: "Sky Ranch Tagaytay is a premier amusement and theme park perched on Tagaytay Ridge. The park features over 20 rides including the iconic Sky Eye Ferris wheel, which provides an unobstructed bird's-eye view of Taal Volcano and the surrounding landscape. With a variety of food stalls, shops, and rides for all ages, Sky Ranch is a complete family destination.",
+        fee: "₱100 entrance; rides priced separately (₱80–₱200 each)",
+        hours: "10:00 AM – 9:00 PM (Weekdays); 8:00 AM – 10:00 PM (Weekends)",
+        bestTime: "Weekday mornings to avoid queues",
+        location: "Tagaytay City, Cavite",
+        activities: ["Ferris wheel ride (Sky Eye)", "Roller coaster", "Bump cars", "Pony rides", "Food tripping", "Shopping"],
+        tips: ["Buy ride-all-you-can packages for better value", "Visit on weekday mornings for shorter lines", "The Sky Eye is best at sunset for golden-hour photos"]
+    },
+    {
+        name: "Gourmet Farms",
+        city: "Silang",
+        category: "Food Destination",
+        image: "https://primer.com.ph/travel/wp-content/uploads/sites/6/2019/10/GourmetFarms_Featured.png",
+        short: "An acclaimed farm-to-table restaurant and organic farm where guests can harvest herbs, make pesto, and dine on fresh produce.",
+        description: "Gourmet Farms in Silang is one of the Philippines' most celebrated farm-to-table experiences. Set on a working organic farm, guests can wander through vegetable and herb gardens, participate in pesto-making workshops, and enjoy meals prepared entirely with the farm's own fresh produce. The serene highland setting and farm activities make it a unique and educational dining destination.",
+        fee: "Free farm access; dining costs vary",
+        hours: "9:00 AM – 5:00 PM (Tue–Sun)",
+        bestTime: "Year-round; weekdays for a quieter experience",
+        location: "Silang, Cavite",
+        activities: ["Farm tour", "Herb and vegetable harvesting", "Pesto-making workshop", "Farm-to-table dining", "Photography"],
+        tips: ["Reservations recommended for large groups", "Try the freshly baked bread and homemade pasta", "Bring a cooler bag — fresh produce is available for purchase"]
+    },
+    {
+        name: "Cawa-Cawa Beach",
+        city: "Ternate",
+        category: "Beach",
+        image: "https://ik.imagekit.io/tvlk/blog/2023/07/shutterstock_1848999469-3.jpg?tr=dpr-2,w-675",
+        short: "A peaceful coastal destination in Ternate with calm waters, black sand beach, and views of Corregidor Island.",
+        description: "Ternate's coastline offers a quiet alternative to overcrowded beach destinations. Cawa-Cawa Beach features calm, shallow waters ideal for swimming and wading, with a backdrop of mangrove trees and a distant view of Corregidor Island across Manila Bay. The area is popular among local families and those seeking a peaceful seaside escape without the long drive to other provinces.",
+        fee: "₱50 (beach access)",
+        hours: "6:00 AM – 6:00 PM daily",
+        bestTime: "November to May (dry season)",
+        location: "Ternate, Cavite",
+        activities: ["Swimming", "Kayaking", "Mangrove exploration", "Beachside picnic", "Sunset viewing"],
+        tips: ["Bring your own food and drinks as stalls are limited", "Water is calm — ideal for children", "Combine with a visit to the nearby Fort San Felipe ruins"]
+    },
+    {
+        name: "Museo Orlina",
+        city: "Tagaytay",
+        category: "Historical Site",
+        image: "https://www.filipinoart.ph/newsroom/wp-content/uploads/2020/04/Museo-Orlina-1-1024x711.jpg",
+        short: "A world-class contemporary glass sculpture museum featuring the extraordinary works of artist Ramon Orlina.",
+        description: "Museo Orlina in Alfonso (near Tagaytay) is a stunning private museum dedicated to the glass sculptures of Filipino artist Ramon Orlina. The museum itself is an architectural marvel, designed to allow natural light to play off the translucent sculptures throughout the day. With works made from colored glass and onyx, this hidden gem is a must-visit for art and architecture enthusiasts.",
+        fee: "₱200 (Adults) / ₱100 (Students)",
+        hours: "9:00 AM – 5:00 PM (Thu–Sun)",
+        bestTime: "Year-round; midday for best lighting effects",
+        location: "Alfonso, Cavite (near Tagaytay)",
+        activities: ["Sculpture gallery tour", "Art appreciation", "Photography (no flash)", "Gift shop browsing"],
+        tips: ["Visit at noon for the most dramatic light effects on the glass", "Photography is allowed without flash", "Tours require prior appointment on weekdays"]
+    },
+    {
+        name: "Mahogany Market",
+        city: "Tagaytay",
+        category: "Food Destination",
+        image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiso7oIIbKZhN34Zm4KGHkw3qCs7ZR1W-5dO1Hhs4ibA1JjtgGu8M4UVjiDzeIenLvKxRapJ-AisCbG5sK6lH4NxxImkoS6Q0EHi-GTyUdZxj9e4Ti1hY4FO288eJ-n7lUmMa6lhguNa4gV0A3aJOVGv0SVKRBUCOw--W4TspX53OZxoF_n5lWSDURf/s831/Mahogany%20Beef%20Market.JPG",
+        short: "A famous wet market in Tagaytay renowned for its fresh bulalo (beef marrow soup) and locally caught tawilis fish.",
+        description: "The Mahogany Market in Tagaytay is a beloved institution among food tourists. It is the best place to try authentic bulalo — a rich beef bone marrow soup that is the signature dish of Tagaytay. The market also sells freshly caught tawilis (freshwater sardines found only in Taal Lake), dried fish, local vegetables, and native delicacies. The steam from simmering pots and the aroma of fresh fish fill the air in this vibrant culinary landmark.",
+        fee: "Free entrance; food prices vary",
+        hours: "5:00 AM – 9:00 PM daily",
+        bestTime: "Early morning for the freshest catches",
+        location: "Tagaytay City, Cavite",
+        activities: ["Bulalo dining", "Tawilis tasting", "Market browsing", "Pasalubong shopping", "Cooking ingredient sourcing"],
+        tips: ["Arrive early for the freshest tawilis", "Try the crispy fried tawilis as an appetizer", "Bring cash — most stalls don't accept cards"]
+    },
+    {
+        name: "Nurture Wellness Village",
+        city: "Tagaytay",
+        category: "Adventure",
+        image: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_863,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/mfjxylt2bdtwjctcskcb/NurtureWellnessVillageSpaExperienceinTagaytay.jpg",
+        short: "A serene wellness resort in the Tagaytay highlands offering spa treatments, organic dining, and healing rituals.",
+        description: "Nurture Wellness Village is a dedicated wellness retreat set amid the cool highlands near Tagaytay. It offers traditional Filipino healing therapies, including hilot massage, herbal baths, and chakra alignment sessions. The village also features an organic farm, yoga decks, and a farm-to-table restaurant. It is the perfect escape for those seeking mental and physical rejuvenation.",
+        fee: "Day use from ₱1,500; packages up to ₱8,000",
+        hours: "8:00 AM – 10:00 PM daily (reservations required)",
+        bestTime: "Year-round; weekdays for a quieter experience",
+        location: "Sta. Rosa–Tagaytay Road, Cavite",
+        activities: ["Hilot massage", "Herbal bath", "Yoga session", "Organic farm tour", "Meditation"],
+        tips: ["Book spa treatments in advance, especially on weekends", "Try the traditional Filipino hilot healing ritual", "The organic buffet lunch is highly recommended"]
+    },
+    {
+        name: "Sherwood Hills Golf Club",
+        city: "Trece Martires",
+        category: "Adventure",
+        image: "https://photo.golfasian.com/golf-courses/sherwoods-hills/Sherwood%20Hills%20Golf%20Club%20Layout.jpg",
+        short: "A picturesque 18-hole golf course nestled in the rolling hills of Cavite, offering championship-level play and stunning scenery.",
+        description: "Sherwood Hills Golf Club is one of Cavite's premier golf destinations, featuring an 18-hole championship course laid out across the province's undulating terrain. The course is renowned for its meticulously maintained fairways, challenging layouts, and scenic views. With a full clubhouse, pro shop, and restaurant, it offers a complete golf and leisure experience.",
+        fee: "Green fee from ₱2,200 (weekdays) / ₱2,800 (weekends)",
+        hours: "5:30 AM – 6:00 PM daily",
+        bestTime: "Year-round; early morning for cooler temperatures",
+        location: "Trece Martires, Cavite",
+        activities: ["18-hole golf", "Driving range practice", "Clubhouse dining", "Pro shop browsing"],
+        tips: ["Book tee times online at least 2 days in advance", "Club rental is available", "Weekday mornings offer the fastest round times"]
+    }
+];
+
+let activeFilter = 'All';
+let searchTerm   = '';
+
+function renderCards() {
+    const grid = document.getElementById('destGrid');
+    const filtered = destinations.filter(d => {
+        const matchFilter = activeFilter === 'All' || d.category === activeFilter;
+        const q = searchTerm.toLowerCase();
+        const matchSearch = !q ||
+            d.name.toLowerCase().includes(q) ||
+            d.city.toLowerCase().includes(q) ||
+            d.category.toLowerCase().includes(q);
+        return matchFilter && matchSearch;
+    });
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '<p class="no-results">No destinations found. Try a different search or filter.</p>';
+        return;
+    }
+
+    grid.innerHTML = filtered.map((d, i) => `
+        <div class="dest-card">
+            <img src="${d.image}" alt="${d.name}" loading="lazy">
+            <div class="dest-card-body">
+                <h3>${d.name}</h3>
+                <div class="dest-meta">
+                    <span class="dest-tag">${d.category}</span>
+                    <span class="dest-city">📍 ${d.city}</span>
+                </div>
+                <p>${d.short}</p>
+                <button onclick="openModal(${destinations.indexOf(d)})">View Details</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function openModal(index) {
+    const d = destinations[index];
+    document.getElementById('modalImg').src        = d.image;
+    document.getElementById('modalImg').alt        = d.name;
+    document.getElementById('modalName').textContent = d.name;
+    document.getElementById('modalCat').textContent  = d.category;
+    document.getElementById('modalCity').textContent = '📍 ' + d.city;
+    document.getElementById('modalDesc').textContent = d.description;
+    document.getElementById('modalFee').textContent  = d.fee;
+    document.getElementById('modalHours').textContent = d.hours;
+    document.getElementById('modalBest').textContent  = d.bestTime;
+    document.getElementById('modalLocation').textContent = d.location;
+
+    document.getElementById('modalActivities').innerHTML =
+        d.activities.map(a => `<li>${a}</li>`).join('');
+    document.getElementById('modalTips').innerHTML =
+        d.tips.map(t => `<li>${t}</li>`).join('');
+
+    document.getElementById('destModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('destModal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('destModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.cat;
+        renderCards();
+    });
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+    searchTerm = e.target.value;
+    renderCards();
+});
+
+renderCards();
+</script>
+
+<script>
+    const dropBtn  = document.getElementById('exploreDropdownBtn');
+    const dropMenu = document.getElementById('exploreDropdown');
+    dropBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropMenu.classList.toggle('open');
+        dropBtn.classList.toggle('active', isOpen);
+        dropBtn.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function () {
+        dropMenu.classList.remove('open');
+        dropBtn.classList.remove('active');
+        dropBtn.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            dropMenu.classList.remove('open');
+            dropBtn.classList.remove('active');
+            dropBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+</script>
+</body>
+</html>

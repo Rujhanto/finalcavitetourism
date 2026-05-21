@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact / Inquire | Cavite Tourism</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+    <a href="index.html" class="logo-link">
+        <img src="image/cavite.png" alt="Cavite Seal" class="logo-img">
+    </a>
+    <div class="header-center">
+        <p class="header-tagline">Isang Cavite. Isang Lahi. Isang Pamilya.</p>
+        <h1 class="header-title">WELCOME TO CAVITE!</h1>
+    </div>
+    <nav>
+        <a href="index.html"        class="nav-link">Home</a>
+        <a href="about.html"        class="nav-link">About</a>
+        <a href="destinations.html" class="nav-link">Destinations</a>
+        <div class="nav-dropdown">
+            <button class="nav-link nav-dropdown-btn" id="exploreDropdownBtn" aria-haspopup="true" aria-expanded="false">Explore &#9662;</button>
+            <div class="dropdown-content" id="exploreDropdown" role="menu">
+                <a href="about.html" role="menuitem">About Cavite</a>
+                <a href="destinations.html" role="menuitem">Tourist Destinations</a>
+                <a href="festivals.html" role="menuitem">Festivals &amp; Culture</a>
+                <a href="food.html" role="menuitem">Food &amp; Delicacies</a>
+                <a href="gallery.html" role="menuitem">Gallery</a>
+                <a href="travel-tips.html" role="menuitem">Travel Tips</a>
+                <hr>
+                <a href="contact.html" role="menuitem">Contact / Inquire</a>
+            </div>
+        </div>
+        <a href="contact.html" class="nav-link active">Contact</a>
+    </nav>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <h1>Contact / Inquire</h1>
+    <p>Have questions about visiting Cavite? We'd love to hear from you — send us a message and we'll get back to you shortly.</p>
+</div>
+
+<main>
+
+    <!-- QUICK INFO CARDS -->
+    <div class="section-heading">
+        <h2>Get in Touch</h2>
+        <p>Reach out through any of our channels or fill out the form below.</p>
+    </div>
+
+    <div class="about-cards" style="margin-bottom: 3rem; max-width: 1100px; margin-left: auto; margin-right: auto; margin-bottom: 3rem;">
+        <div class="about-card">
+            <div class="about-card-icon">📧</div>
+            <h3>Email Us</h3>
+            <p>carpiomark68@gmail.com<br>We reply within 24–48 hours on business days.</p>
+        </div>
+        <div class="about-card">
+            <div class="about-card-icon">📞</div>
+            <h3>Call the DOT Office</h3>
+            <p>Cavite Department of Tourism<br><strong>(046) 431-9099</strong><br>Mon–Fri, 8:00 AM – 5:00 PM</p>
+        </div>
+        <div class="about-card">
+            <div class="about-card-icon">📍</div>
+            <h3>Visit Us</h3>
+            <p>Provincial Capitol Complex<br>Trece Martires City, Cavite<br>Philippines 4109</p>
+        </div>
+        <div class="about-card">
+            <div class="about-card-icon">🕐</div>
+            <h3>Office Hours</h3>
+            <p>Monday – Friday<br>8:00 AM – 5:00 PM<br>Closed on public holidays</p>
+        </div>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="section-heading">
+        <h2>Send Us a Message</h2>
+        <p>Fill out the form below and our tourism team will respond as soon as possible.</p>
+    </div>
+
+    <div class="contact-wrapper">
+        <div class="contact-form">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="e.g. Maria">
+                    <div class="field-error" id="firstNameError">Please enter your first name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="e.g. Santos">
+                    <div class="field-error" id="lastNameError">Please enter your last name.</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com">
+                    <div class="field-error" id="emailError">Please enter a valid email address.</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number <span style="color:#999; font-weight:400;">(optional)</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+63 912 345 6789">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inquiryType">Inquiry Type *</label>
+                <select id="inquiryType" name="inquiryType">
+                    <option value="">— Select an inquiry type —</option>
+                    <option value="tourist-destinations">Tourist Destinations</option>
+                    <option value="festivals-events">Festivals &amp; Events</option>
+                    <option value="food-delicacies">Food &amp; Delicacies</option>
+                    <option value="transportation">Transportation &amp; Getting Around</option>
+                    <option value="accommodations">Accommodations &amp; Lodging</option>
+                    <option value="guided-tours">Guided Tours</option>
+                    <option value="group-travel">Group or School Travel</option>
+                    <option value="media-partnership">Media / Partnership</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="field-error" id="inquiryTypeError">Please select an inquiry type.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="visitDate">Planned Visit Date <span style="color:#999; font-weight:400;">(optional)</span></label>
+                <input type="date" id="visitDate" name="visitDate">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message *</label>
+                <textarea id="message" name="message" rows="5"
+                    placeholder="Tell us how we can help — ask about destinations, transportation, accommodation, local events, or anything else about Cavite!"></textarea>
+                <div class="field-error" id="messageError">Please enter your message (at least 20 characters).</div>
+            </div>
+
+            <div class="form-group" style="display:flex; align-items:flex-start; gap:10px; margin-bottom:24px;">
+                <input type="checkbox" id="agreePrivacy" name="agreePrivacy"
+                    style="width:auto; margin-top:3px; accent-color:#2d6a2d; cursor:pointer;">
+                <label for="agreePrivacy" style="font-weight:400; font-size:0.88rem; color:#555; cursor:pointer;">
+                    I agree to the collection and processing of my personal information for the purpose of responding to this inquiry, in accordance with the Philippine Data Privacy Act of 2012.
+                </label>
+            </div>
+            <div class="field-error" id="privacyError" style="margin-top:-14px; margin-bottom:14px;">Please agree to the privacy policy to continue.</div>
+
+            <button type="button" class="form-submit" id="submitBtn" onclick="submitForm()">
+                📨 &nbsp; Send My Inquiry
+            </button>
+
+            <div class="form-success" id="formSuccess">
+                <p style="font-size:1.6rem; margin-bottom:8px;">🎉</p>
+                <p style="font-size:1.1rem; font-weight:800; color:#155724; margin-bottom:6px;">Message Sent Successfully!</p>
+                <p style="font-weight:400; color:#1e7e34;">
+                    Thank you for reaching out! Our Cavite Tourism team will get back to you within 24–48 hours.<br>
+                    In the meantime, feel free to explore our <a href="travel-tips.html" style="color:#155724; font-weight:700;">Travel Tips</a> or browse the <a href="gallery.html" style="color:#155724; font-weight:700;">Gallery</a>.
+                </p>
+            </div>
+
+        </div><!-- /.contact-form -->
+    </div><!-- /.contact-wrapper -->
+
+    <!-- MAP / LOCATION SECTION -->
+    <div class="section-heading" style="margin-top: 4rem;">
+        <h2>Find Us</h2>
+        <p>Cavite Provincial Capitol — Trece Martires City, the provincial capital of Cavite.</p>
+    </div>
+    <div style="max-width: 900px; margin: 0 auto 3rem; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,0.1); border: 1px solid #eee;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3871.893297048028!2d120.8656!3d14.2800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d4f9b5f0c9b3%3A0x4b1e2a3b4c5d6e7f!2sTrece%20Martires%20City%2C%20Cavite!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph"
+            width="100%" height="380" style="border:0; display:block;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Cavite Provincial Capitol Location">
+        </iframe>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div class="section-heading" style="margin-top: 2rem;">
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to common visitor questions.</p>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto 3rem;" id="faqContainer">
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                How do I get to Cavite from Manila?
+                <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+                <p>By bus, take DLTB, HM Transport, or Genesis Bus from the Buendia Terminal (EDSA–Taft) bound for Tagaytay or other Cavite destinations. By car, use the Cavite Expressway (CAVITEX) or Aguinaldo Highway. Ride-hailing apps like Grab are also available from most Cavite cities.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                What is the best time of year to visit Cavite?
+                <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+                <p>The dry season from <strong>November to May</strong> is ideal. Tagaytay is particularly lovely from December to February when cool highland air is at its most refreshing. Avoid June–October for trekking and island travel, though waterfalls are at their fullest after the rains.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Is Taal Volcano Island safe to visit?
+                <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+                <p>Visits depend on PHIVOLCS (Philippine Institute of Volcanology and Seismology) advisories. Always check the latest alert level before planning a trip to the island. When it is open, boat tours depart from Talisay town and guided hikes are available. Contact PHIVOLCS at (02) 8929-9254 for the latest updates.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Are there guided tour packages available for Cavite?
+                <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+                <p>Yes! Local tour operators offer day-tour and overnight packages covering Tagaytay, Kawit heritage sites, Corregidor Island, mountain treks, and coffee farm visits. Fill out the inquiry form above and select "Guided Tours" to request more information.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                What are the must-buy pasalubong from Cavite?
+                <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+                <p>Top pasalubong picks include: <strong>Kapeng Barako</strong> (ground or whole bean) from Amadeo, <strong>sineguelas jam</strong> from Tagaytay markets, <strong>sampalok candy</strong> from Cavite City, <strong>bibingka espesyal</strong> from roadside stalls, and <strong>dried tawilis</strong> from Mahogany Market.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                How much should I budget for a day trip to Cavite?
+                <span class="faq-arrow">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+                <p>A comfortable day trip to Tagaytay typically costs <strong>₱800–₱2,000 per person</strong>, covering transport, meals (bulalo + tawilis), entrance fees, and pasalubong. Historical sites like the Aguinaldo Shrine charge very affordable entrance fees of ₱30–₱200. Weekday visits are less crowded and often cheaper.</p>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    &copy; 2026 Cavite Tourism &mdash; carpiomark68@gmail.com &mdash; Designed with care.
+</footer>
+
+<script>
+/* ── FORM VALIDATION ── */
+function validateField(id, errorId, condition) {
+    const el  = document.getElementById(id);
+    const err = document.getElementById(errorId);
+    if (condition(el.value)) {
+        el.classList.remove('error');
+        el.classList.add('valid');
+        err.classList.remove('show');
+        return true;
+    } else {
+        el.classList.add('error');
+        el.classList.remove('valid');
+        err.classList.add('show');
+        return false;
+    }
+}
+
+function submitForm() {
+    let valid = true;
+
+    valid = validateField('firstName', 'firstNameError', v => v.trim().length >= 2) && valid;
+    valid = validateField('lastName',  'lastNameError',  v => v.trim().length >= 2) && valid;
+    valid = validateField('email', 'emailError', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())) && valid;
+    valid = validateField('inquiryType', 'inquiryTypeError', v => v !== '') && valid;
+    valid = validateField('message', 'messageError', v => v.trim().length >= 20) && valid;
+
+    // Privacy checkbox
+    const privacy  = document.getElementById('agreePrivacy');
+    const privErr  = document.getElementById('privacyError');
+    if (!privacy.checked) {
+        privErr.classList.add('show');
+        valid = false;
+    } else {
+        privErr.classList.remove('show');
+    }
+
+    if (valid) {
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').textContent = '⏳  Sending…';
+
+        // Simulate async submission
+        setTimeout(() => {
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('formSuccess').classList.add('show');
+
+            // Scroll to success message
+            document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1200);
+    }
+}
+
+// Live validation on blur
+['firstName','lastName','email','inquiryType','message'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', () => {
+        const errMap = {
+            firstName:   [v => v.trim().length >= 2,  'firstNameError'],
+            lastName:    [v => v.trim().length >= 2,  'lastNameError'],
+            email:       [v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), 'emailError'],
+            inquiryType: [v => v !== '',              'inquiryTypeError'],
+            message:     [v => v.trim().length >= 20, 'messageError'],
+        };
+        const [cond, errId] = errMap[id];
+        validateField(id, errId, cond);
+    });
+});
+
+/* ── FAQ ACCORDION ── */
+function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-question.open').forEach(q => {
+        q.classList.remove('open');
+        q.nextElementSibling.classList.remove('open');
+    });
+
+    // Open clicked if it was closed
+    if (!isOpen) {
+        btn.classList.add('open');
+        answer.classList.add('open');
+    }
+}
+</script>
+
+<script>
+    const dropBtn  = document.getElementById('exploreDropdownBtn');
+    const dropMenu = document.getElementById('exploreDropdown');
+    dropBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = dropMenu.classList.toggle('open');
+        dropBtn.classList.toggle('active', isOpen);
+        dropBtn.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function () {
+        dropMenu.classList.remove('open');
+        dropBtn.classList.remove('active');
+        dropBtn.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            dropMenu.classList.remove('open');
+            dropBtn.classList.remove('active');
+            dropBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+</script>
+</body>
+</html>
